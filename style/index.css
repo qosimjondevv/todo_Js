@@ -1,7 +1,8 @@
 body {
   font-family: "Poppins", sans-serif;
 }
-
+p,
+span,
 h2,
 h4 {
   font-family: "Poppins", sans-serif;
@@ -19,6 +20,8 @@ body {
   flex-direction: column;
   height: 100%;
   background-color: #ecfdf5;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
 }
 ul {
   list-style: none;
