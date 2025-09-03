@@ -13,14 +13,31 @@ function TodoPrototype(text, id, category) {
 }
 
 // /////////////////////////////////////////////// ochirish
-function removeTodo(todoId) {
+function removeTodo(todoId, category) {
   let el = document.querySelector(`.data_todo_id${todoId}`);
   if (el) el.remove();
+
   todos = todos.filter((t) => t.id !== todoId);
   todosCount.textContent = todos.length;
+
+  let targetDiv;
+  if (category === "easy") targetDiv = document.querySelector(".easy_todo");
+  else if (category === "medium")
+    targetDiv = document.querySelector(".medium_todo");
+  else if (category === "high")
+    targetDiv = document.querySelector(".high_todo");
+
+  let placeholder = targetDiv.querySelector(".placeholder");
+  if (placeholder) {
+    if (todos.length === 0) {
+      placeholder.style.display = "block";
+    } else {
+      placeholder.style.display = "none";
+    }
+  }
 }
 
-// ///////////////////////////////////////////// DOMga qo‘shish
+// ///////////////////////////////////////////// DOMga qowiw
 function todoCreateDom(todoText, todoId, category) {
   let listItem = document.createElement("li");
   let deleteBtn = document.createElement("button");
@@ -34,7 +51,7 @@ function todoCreateDom(todoText, todoId, category) {
   textSpan.textContent = todoText;
   textSpan.classList.add("todo_text");
 
-  // ///////////////////////////////////////////////////////Edit && delet btn
+  // ///////////////////////////////////////////////////////edit && delet btn
   editBtn.classList.add("btn_edit");
   editBtn.textContent = "Edit";
   deleteBtn.classList.add("btn_delet");
@@ -49,16 +66,19 @@ function todoCreateDom(todoText, todoId, category) {
     targetDiv = document.querySelector(".high_todo");
 
   let placeholder = targetDiv.querySelector(".placeholder");
-  if (placeholder) {
-    placeholder.remove();
-  }
+  if (placeholder) placeholder.style.display = "none";
 
-  targetDiv.appendChild(listItem);
+  // let placeholder = targetDiv.querySelector(".placeholder");
+  // if (placeholder) {
+  //   placeholder.remove();
+  // }
 
   // ////////////////////////////////////// listItemga ulaw qowiw
   listItem.appendChild(textSpan);
   listItem.appendChild(editBtn);
   listItem.appendChild(deleteBtn);
+
+  targetDiv.appendChild(listItem);
 
   // ////////////////////////////////////////edit tugmasi bosilganda
   editBtn.addEventListener("click", function () {
@@ -117,7 +137,7 @@ function todoCreateDom(todoText, todoId, category) {
 
   // ////////////////////////////////////////// delete btn bosil
   deleteBtn.addEventListener("click", function () {
-    removeTodo(todoId);
+    removeTodo(todoId, category);
   });
 }
 
