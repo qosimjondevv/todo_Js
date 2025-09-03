@@ -12,7 +12,6 @@ function TodoPrototype(text, id, category) {
   this.category = category;
 }
 
-// /////////////////////////////////////////////// ochirish
 function removeTodo(todoId, category) {
   let el = document.querySelector(`.data_todo_id${todoId}`);
   if (el) el.remove();
@@ -37,7 +36,6 @@ function removeTodo(todoId, category) {
   }
 }
 
-// ///////////////////////////////////////////// DOMga qowiw
 function todoCreateDom(todoText, todoId, category) {
   let listItem = document.createElement("li");
   let deleteBtn = document.createElement("button");
@@ -47,17 +45,14 @@ function todoCreateDom(todoText, todoId, category) {
   listItem.classList.add("list_group_item");
   listItem.classList.add(`data_todo_id${todoId}`);
 
-  // /////////////////////////////////////////////////matn qowiw
   textSpan.textContent = todoText;
   textSpan.classList.add("todo_text");
 
-  // ///////////////////////////////////////////////////////edit && delet btn
   editBtn.classList.add("btn_edit");
   editBtn.textContent = "Edit";
   deleteBtn.classList.add("btn_delet");
   deleteBtn.textContent = "O'chirish";
 
-  // ////////////////////////////////////////////// categorita kanterner
   let targetDiv;
   if (category === "easy") targetDiv = document.querySelector(".easy_todo");
   else if (category === "medium")
@@ -68,19 +63,11 @@ function todoCreateDom(todoText, todoId, category) {
   let placeholder = targetDiv.querySelector(".placeholder");
   if (placeholder) placeholder.style.display = "none";
 
-  // let placeholder = targetDiv.querySelector(".placeholder");
-  // if (placeholder) {
-  //   placeholder.remove();
-  // }
-
-  // ////////////////////////////////////// listItemga ulaw qowiw
   listItem.appendChild(textSpan);
   listItem.appendChild(editBtn);
   listItem.appendChild(deleteBtn);
-
   targetDiv.appendChild(listItem);
 
-  // ////////////////////////////////////////edit tugmasi bosilganda
   editBtn.addEventListener("click", function () {
     if (editBtn.textContent === "Edit") {
       const editInput = document.createElement("input");
@@ -95,7 +82,6 @@ function todoCreateDom(todoText, todoId, category) {
       editBtn.textContent = "Save";
       editInput.focus();
 
-      // ////////////////////////////////////////////////enter bosilganda ham saqlash
       editInput.addEventListener("keydown", function handler(e) {
         if (e.key === "Enter") {
           saveEdit(editInput);
@@ -110,7 +96,6 @@ function todoCreateDom(todoText, todoId, category) {
     }
   });
 
-  //////////////////////////////////////////////////////////// saqlash funksia
   function saveEdit(inpEl) {
     let newText = inpEl.value.trim();
     if (newText.length === 0) {
@@ -135,20 +120,17 @@ function todoCreateDom(todoText, todoId, category) {
     editBtn.textContent = "Edit";
   }
 
-  // ////////////////////////////////////////// delete btn bosil
   deleteBtn.addEventListener("click", function () {
     removeTodo(todoId, category);
   });
 }
 
-// ////////////////////////////////////////////// vazifa jiqaradi yangilaydi
 function todoCreate(todoText, todoId, category) {
   todoCreateDom(todoText, todoId, category);
   todos.push(new TodoPrototype(todoText, todoId, category));
   todosCount.textContent = todos.length;
 }
 
-// ////////////////////////////// forma submit
 todoForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
