@@ -9,24 +9,55 @@
   <body>
     <div class="container todo_card">
       <div class="card_header">
-        <h2>Vazifalar</h2>
+        <h2>vazifalarim</h2>
         <h4 class="todo_count">vazifalarim soni: <span></span></h4>
       </div>
       <div class="card_body">
         <form class="todo_form">
-          <input type="text" class="form_input" placeholder="Vazifa nomi" />
+          <input type="text" class="form_input" placeholder="Vazifa nomi.." />
+
+          <select class="form_select">
+            <option value="easy">oson</option>
+            <option value="medium">ortacha</option>
+            <option value="high">muhim</option>
+          </select>
+
           <button type="submit" class="btn_submit">Qo'shish</button>
         </form>
       </div>
 
       <ul class="list_group">
         <li class="list_group_item">
-          <!-- <span>tedjfbejhst</span>
-          <button class="btn_delet">O'chirish</button> -->
+          <!-- <span>tedjfbejhst</span> -->
+          <!-- <button class="btn_delet">O'chirish</button> -->
         </li>
       </ul>
       <div class="card_footer">
-        <a href="#" class="btn_storage">Saqlash</a>
+        <!-- <a href="#" class="btn_storage">Saqlash</a> -->
+      </div>
+
+      <div class="cards_categoriya">
+        <!-- ////////////////////////////////////////////////////////// -->
+        <div class="easy_card">
+          <div class="easy_txt">Oson vazifa</div>
+          <div class="easy_todo">
+            <span class="placeholder">Buyerda oson vazifa mavjud emas</span>
+          </div>
+        </div>
+        <!-- ///////////////////////////////////////////////////////// -->
+        <div class="medium_card">
+          <div class="medium_txt">O'rtacha vazifa</div>
+          <div class="medium_todo">
+            <span class="placeholder">Buyerda o'rtacha vazifa mavjud emas</span>
+          </div>
+        </div>
+        <!-- /////////////////////////////////////////////// -->
+        <div class="high_card">
+          <div class="high_txt">Muhim vazifa</div>
+          <div class="high_todo">
+            <span class="placeholder">Buyerda Muhim vazifa mavjud emas</span>
+          </div>
+        </div>
       </div>
     </div>
 
